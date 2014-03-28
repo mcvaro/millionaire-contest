@@ -1,18 +1,21 @@
-package com.example.whowantstobemillionaire.contest;
-
-import java.util.List;
+package com.example.quienquieresermillonario.concurso;
 
 import android.os.Bundle;
 import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.whowantstobemillionaire.contest.DBScores;
+import com.example.whowantstobemillionaire.contest.MenuActivity;
+import com.example.whowantstobemillionaire.contest.R;
+import com.example.whowantstobemillionaire.contest.Score;
+
+import java.util.List;
 
 
 public class
-        ScoresActivity extends MenuActivity {
+        ScoresActivity_es extends MenuActivity {
 
 
 	@Override
@@ -24,7 +27,7 @@ public class
 		TabHost tab = (TabHost) findViewById(R.id.TabHost1);
 		tab.setup();
 		tab.addTab(tab.newTabSpec("Local").setIndicator("Local").setContent(R.id.ScoresLocal));
-		tab.addTab(tab.newTabSpec("Remote").setIndicator("Remote").setContent(R.id.ScoresRemote));
+		tab.addTab(tab.newTabSpec("Remoto").setIndicator("Remoto").setContent(R.id.ScoresRemote));
 		tab.setCurrentTabByTag("Local");
 		
 		

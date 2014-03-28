@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/title_activity_main"
+        android:text="@string/title_activity_main_es"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <Button
@@ -22,7 +22,7 @@
          android:layout_height="wrap_content"
          android:layout_marginTop="120dp"
          android:layout_centerHorizontal="true"
-         android:text="@string/title_activity_play" 
+         android:text="@string/title_activity_play_es"
          android:layout_below="@+id/main"/>
     
     <Button
@@ -31,7 +31,7 @@
          android:layout_height="wrap_content"
          android:layout_marginTop="30dp"
          android:layout_centerHorizontal="true"
-         android:text="@string/title_activity_settings" 
+         android:text="@string/title_activity_settings_es"
          android:layout_below="@+id/ButtonPlay"/>
     
     
@@ -41,7 +41,7 @@
          android:layout_height="wrap_content"
          android:layout_marginTop="30dp"
          android:layout_centerHorizontal="true"
-         android:text="@string/title_activity_scores" 
+         android:text="@string/title_activity_scores_es"
          android:layout_below="@+id/ButtonSettings"/>
 
       <ImageButton

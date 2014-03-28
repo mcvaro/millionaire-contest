@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/title_activity_settings"
+        android:text="@string/title_activity_settings_es"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	<EditText
@@ -33,7 +33,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="50dp"
         android:textSize="15sp"
-        android:text="@string/name_settings"
+        android:text="@string/name_settings_es"
         android:layout_below="@+id/settings"/>
   	
   	<Spinner
@@ -52,7 +52,7 @@
         android:layout_marginRight="145dp"
         android:layout_marginTop="25dp"
         android:textSize="15sp"
-        android:text="@string/number_helps"
+        android:text="@string/number_helps_es"
         android:layout_below="@+id/user"/>
   	
   	<Button
@@ -62,7 +62,7 @@
   	    android:layout_width="wrap_content"
   	    android:layout_height="wrap_content"
   	    android:layout_below="@+id/number_helps_text"
-  	    android:text="@string/add_friend" />
+  	    android:text="@string/add_friend_es" />
   	
 	<EditText
 	    android:id="@+id/friendbox"

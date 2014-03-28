@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Quien Quiere Ser Millonario</string>
+    <string name="app_name">Who Wants To Be a Millionaire</string>
+    <string name="app_name_es">Quien Quiere Ser Millonario</string>
     <string name="action_settings">Settings</string>
     <string name="im_background">background</string>
     <string name="title_activity_play">Play</string>
+    <string name="title_activity_play_es">Jugar</string>
     <string name="title_activity_main">Main</string>
+    <string name="title_activity_main_es">Principal</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings_es">Ajustes</string>
     <string name="title_activity_scores">Scores</string>
+    <string name="title_activity_scores_es">Puntuaciones</string>
     <string name="title_activity_credits">Credits</string>
-    <string name="create_by">Creado por:</string>
+    <string name="title_activity_credits_es">Créditos</string>
+    <string name="create_by">Created by:</string>
+    <string name="create_by_es">Creado por:</string>
     <string name="alvaro">Alvaro Duart Josa</string>
     <string name="correo1">mcvaro@gmail.com</string>
     <string name="borja">Borja Durán Crespo</string>
     <string name="correo2">borjaxvalencia@gmail.com</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="phone_menu">Phone</string>
+    <string name="phone_menu_es">Llamada</string>
     <string name="fifty_percent_menu">50%</string>
     <string name="audience_menu">Audience</string>
+    <string name="audience_menu_es">Público</string>
     <string name="end_game_menu">End Game</string>
+    <string name="end_game_menu_es">Finalizar</string>
     <string name="name_settings">Name</string>
+    <string name="name_settings_es">Nombre</string>
     <string name="number_helps">Select how many times can you ask for help:</string>
+    <string name="number_helps_es">Selecciona cuantas veces puedes pedir ayuda :</string>
     <string name="add_friend">Add Friend</string>
+    <string name="add_friend_es">Añadir Amigo</string>
 </resources>

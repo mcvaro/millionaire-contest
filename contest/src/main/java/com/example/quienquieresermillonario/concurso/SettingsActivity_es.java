@@ -1,15 +1,18 @@
-package com.example.whowantstobemillionaire.contest;
+package com.example.quienquieresermillonario.concurso;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
+
+import com.example.whowantstobemillionaire.contest.MenuActivity;
+import com.example.whowantstobemillionaire.contest.R;
 
 
-public class SettingsActivity extends MenuActivity {
+public class SettingsActivity_es extends MenuActivity {
 	
 	public static final String PREF_NAME = "settings";
 

@@ -1,18 +1,11 @@
-package com.example.whowantstobemillionaire.contest;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
+package com.example.quienquieresermillonario.concurso;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,10 +13,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
+import com.example.whowantstobemillionaire.contest.DBScores;
+import com.example.whowantstobemillionaire.contest.MainActivity;
+import com.example.whowantstobemillionaire.contest.Question;
+import com.example.whowantstobemillionaire.contest.R;
+import com.example.whowantstobemillionaire.contest.Score;
+import com.example.whowantstobemillionaire.contest.SettingsActivity;
 
-public class PlayActivity extends Activity {
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PlayActivity_es extends Activity {
 
 	public List<Question> list = new ArrayList<Question>();
 	public int i=0;
@@ -32,16 +38,15 @@ public class PlayActivity extends Activity {
 	public int helps;
 	public boolean flagHelp = false;
 	public int totalScore = 0;
-    private int maxHelps = 2;
+
 
 	
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_play);
+		setContentView(R.layout.activity_play_es);
 		
-		
-		
+
 		playBehavior();
 
 	}
@@ -49,7 +54,7 @@ public class PlayActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.play, menu);
+		getMenuInflater().inflate(R.menu.play_es, menu);
 		return true;
 	}
 
@@ -179,7 +184,7 @@ public class PlayActivity extends Activity {
 		try {
 			
 			XmlPullParser parser = null;
-			InputStream is = getResources().openRawResource(R.raw.questions0001);
+			InputStream is = getResources().openRawResource(R.raw.questions0001_es);
 			parser = XmlPullParserFactory.newInstance().newPullParser();
 			parser.setInput(is, null);
 			
@@ -233,11 +238,11 @@ public class PlayActivity extends Activity {
 	public void setQuestions() {
 		
 		TextView b = (TextView) findViewById(R.id.bet);
-		b.setText("Play for: " + score[i]);
+		b.setText("Juega por: " + score[i]);
 		
 
 		TextView n = (TextView) findViewById(R.id.number);
-		n.setText("Question: " + list.get(i).getNumber());
+		n.setText("Pregunta: " + list.get(i).getNumber());
 		
 
 		TextView q = (TextView) findViewById(R.id.question);
@@ -350,7 +355,7 @@ public class PlayActivity extends Activity {
 		
 		DBScores scoredb = new DBScores(this);
 		
-		SharedPreferences preferences = getSharedPreferences(SettingsActivity.PREF_NAME, Context.MODE_PRIVATE);		
+		SharedPreferences preferences = getSharedPreferences(SettingsActivity.PREF_NAME, Context.MODE_PRIVATE);
 		String user = preferences.getString("data","");
 		
 		Score score = new Score(user, totalScore);
@@ -360,7 +365,7 @@ public class PlayActivity extends Activity {
 	}
 	public void finish() {
 		
-		startActivity(new Intent(PlayActivity.this, MainActivity.class));
+		startActivity(new Intent(PlayActivity_es.this, MainActivity_es.class));
 	
 	}
 }
