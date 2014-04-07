@@ -2,11 +2,10 @@ package com.example.whowantstobemillionaire.contest;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
-import com.example.quienquieresermillonario.concurso.MainActivity_es;
 
 
 public class MainActivity extends MenuActivity {
@@ -48,26 +47,19 @@ public class MainActivity extends MenuActivity {
 			}
 			
 		});
-
-        ImageButton spanish = (ImageButton) findViewById(R.id.spanish);
-        spanish.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MainActivity_es.class));
-
-            }
-
-        });
-
-        ImageButton english = (ImageButton) findViewById(R.id.english);
-        english.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
-
-
-            }
-
-        });
-
+    }
+    //Con la tecla atrás no volvemos al activity anterior, salimos de la app
+     public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if(keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }
 

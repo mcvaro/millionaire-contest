@@ -1,6 +1,6 @@
 package com.example.whowantstobemillionaire.contest;
 
-public class Score {
+public class Score implements Comparable<Score>{
 	
 	String _user;
 	int _score;
@@ -29,4 +29,17 @@ public class Score {
 	public void setScore(int score) {
 		this._score = score;
 	}
+
+    public int compareTo(Score o) {
+        // TODO Auto-generated method stub
+        if (this.getScore() > o.getScore()) {
+            return 1;
+        }
+        else if (this.getScore() < o.getScore()) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    }
 }

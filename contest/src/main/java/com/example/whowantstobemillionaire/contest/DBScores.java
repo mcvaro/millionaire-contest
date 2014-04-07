@@ -37,6 +37,9 @@ public class DBScores extends SQLiteOpenHelper {
 
 		
 	}
+    public void onDelete(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS Scores");
+    }
 	
 	public void addScore(Score score) {
 		

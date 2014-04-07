@@ -39,11 +39,9 @@ public class PlayActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play);
-		
-		
-		
-		playBehavior();
 
+        readQuestionsXML();
+        setQuestions();
 	}
 
 	@Override
@@ -157,18 +155,6 @@ public class PlayActivity extends Activity {
 		
 	}
 	
-	     
-	  
-	   
-	
-	
-	public void playBehavior() {
-		
-		readQuestionsXML();
-		setQuestions();
-
-	}
-	
 
 
 	public void readQuestionsXML() {
@@ -207,7 +193,7 @@ public class PlayActivity extends Activity {
 					
 					
 					if(answer1 == null){ 
-						eventType = parser.next();
+						eventType = parser.next();//todo
 						}
 					
 					else{list.add(quest);
@@ -233,11 +219,11 @@ public class PlayActivity extends Activity {
 	public void setQuestions() {
 		
 		TextView b = (TextView) findViewById(R.id.bet);
-		b.setText("Play for: " + score[i]);
+		b.setText(getString(R.string.play_for) + score[i]);
 		
 
 		TextView n = (TextView) findViewById(R.id.number);
-		n.setText("Question: " + list.get(i).getNumber());
+		n.setText(getString(R.string.question) + list.get(i).getNumber());
 		
 
 		TextView q = (TextView) findViewById(R.id.question);
