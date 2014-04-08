@@ -22,16 +22,18 @@ import android.widget.TextView;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.widget.Toast;
 
 public class PlayActivity extends Activity {
 
 	public List<Question> list = new ArrayList<Question>();
-	public int i=0;
+	public int  nquest = 0;
 	public int score[] = {0, 100, 200, 300, 400, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000};
 	public SQLiteDatabase db;
 	public int helps;
 	public boolean flagHelp = false;
 	public int totalScore = 0;
+    public int secureScore = 0;
     private int maxHelps = 2;
 
 	
@@ -40,7 +42,7 @@ public class PlayActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play);
 
-        readQuestionsXML();
+         readQuestionsXML();
         setQuestions();
 	}
 
@@ -59,7 +61,7 @@ public class PlayActivity extends Activity {
 		case R.id.phone:
 			
 			if(helps != getMaxHelps()){
-				setButtonBackgroundColor(list.get(i).getPhone());
+				setButtonBackgroundColor(list.get(nquest).getPhone());
 				helps++;
 				flagHelp = true;}
 			
@@ -69,8 +71,8 @@ public class PlayActivity extends Activity {
 		case R.id.fifty:
 			
 			if(helps != getMaxHelps()){
-				setAnswerInvisible(list.get(i).getFifty1());
-				setAnswerInvisible(list.get(i).getFifty2());
+				setAnswerInvisible(list.get(nquest).getFifty1());
+				setAnswerInvisible(list.get(nquest).getFifty2());
 				helps++;
 				flagHelp = true;}
 			
@@ -80,7 +82,7 @@ public class PlayActivity extends Activity {
 		case R.id.audience:
 			
 			if(helps != getMaxHelps()){
-				setButtonBackgroundColor(list.get(i).getAudience());
+				setButtonBackgroundColor(list.get(nquest).getAudience());
 				helps++;
 				flagHelp = true;}
 			
@@ -161,6 +163,7 @@ public class PlayActivity extends Activity {
 		
 		Question quest;
 		int eventType;
+        String[] answer = new String[4];
 		
 		try {
 			
@@ -177,10 +180,10 @@ public class PlayActivity extends Activity {
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 				if (eventType == XmlPullParser.START_TAG) {
 
-					String answer1 = parser.getAttributeValue(null, "answer1");
-					String answer2 = parser.getAttributeValue(null, "answer2");
-					String answer3 = parser.getAttributeValue(null, "answer3");
-					String answer4 = parser.getAttributeValue(null, "answer4");
+					answer[0] = parser.getAttributeValue(null, "answer1");
+					answer[1] = parser.getAttributeValue(null, "answer2");
+					answer[2] = parser.getAttributeValue(null, "answer3");
+				    answer[3] = parser.getAttributeValue(null, "answer4");
 					String audience = parser.getAttributeValue(null, "audience");
 					String fifty1 = parser.getAttributeValue(null, "fifty1");
 					String fifty2 = parser.getAttributeValue(null, "fifty2");
@@ -189,11 +192,11 @@ public class PlayActivity extends Activity {
 					String right = parser.getAttributeValue(null, "right");
 					String text = parser.getAttributeValue(null, "text");
 
-					quest = new Question(number, text, answer1, answer2, answer3, answer4, right, audience, phone, fifty1, fifty2);
+					quest = new Question(number, text, answer[0], answer[1], answer[2], answer[3], right, audience, phone, fifty1, fifty2);
 					
 					
-					if(answer1 == null){ 
-						eventType = parser.next();//todo
+					if(answer[0] == null){
+						eventType = parser.next();
 						}
 					
 					else{list.add(quest);
@@ -219,19 +222,19 @@ public class PlayActivity extends Activity {
 	public void setQuestions() {
 		
 		TextView b = (TextView) findViewById(R.id.bet);
-		b.setText(getString(R.string.play_for) + score[i]);
+		b.setText(getString(R.string.play_for) + score[nquest]);
 		
 
 		TextView n = (TextView) findViewById(R.id.number);
-		n.setText(getString(R.string.question) + list.get(i).getNumber());
+		n.setText(getString(R.string.question) + list.get(nquest).getNumber());
 		
 
 		TextView q = (TextView) findViewById(R.id.question);
-		q.setText(list.get(i).getText());
+		q.setText(list.get(nquest).getText());
 		
 
 		Button a1 = (Button) findViewById(R.id.ans1);
-		a1.setText(list.get(i).getAnswer1());
+		a1.setText(list.get(nquest).getAnswer(0));
 		a1.setTextColor(Color.BLACK);
 		if(flagHelp == true){
 			a1.setVisibility(View.VISIBLE);
@@ -239,7 +242,7 @@ public class PlayActivity extends Activity {
 			a1.setTextColor(Color.BLACK);}
 
 		Button a2 = (Button) findViewById(R.id.ans2);
-		a2.setText(list.get(i).getAnswer2());
+		a2.setText(list.get(nquest).getAnswer(1));
 		a2.setTextColor(Color.BLACK);
 		
 		if(flagHelp == true){
@@ -248,7 +251,7 @@ public class PlayActivity extends Activity {
 			a2.setTextColor(Color.BLACK);}
 
 		Button a3 = (Button) findViewById(R.id.ans3);
-		a3.setText(list.get(i).getAnswer3());
+		a3.setText(list.get(nquest).getAnswer(2));
 		a3.setTextColor(Color.BLACK);
 		
 		if(flagHelp == true){
@@ -257,7 +260,7 @@ public class PlayActivity extends Activity {
 			a2.setTextColor(Color.BLACK);}
 
 		Button a4 = (Button) findViewById(R.id.ans4);
-		a4.setText(list.get(i).getAnswer4());
+		a4.setText(list.get(nquest).getAnswer(3));
 		a4.setTextColor(Color.BLACK);
 		
 		if(flagHelp == true){
@@ -270,66 +273,42 @@ public class PlayActivity extends Activity {
 	public void clickAnswer(View view) {
 		
 		Button click = (Button) view;
-		
 		String answer = click.getText().toString();
-		
-		int nquest = list.get(i).getRight();
-		
-	
-		
-		switch (nquest) {
-		
-		case 1: if(answer.equals(list.get(i).getAnswer1())) {
-			
-					totalScore += score[i];
-					
-					if(i == 4 || i == 9)
-						saveScore(totalScore);
-					
-					i++;
-					setQuestions();
-					
-				}else finish();
-				break;
-				
-		case 2: if(answer.equals(list.get(i).getAnswer2())) {
-			
-					totalScore += score[i];
-					
-					if(i == 4 || i == 9)
-						saveScore(totalScore);
-					
-					i++;
-					setQuestions();
+		int rightAns = list.get(nquest).getRight();
 
-				}else finish();	 
-				break;
-				
-		case 3: if(answer.equals(list.get(i).getAnswer3())) {
-			
-					totalScore += score[i];
-					
-					if(i == 4 || i == 9)
-						saveScore(totalScore);
-					
-					i++;
-					setQuestions();
-					
-				}else finish();
-				break;
-		
-		case 4: if(answer.equals(list.get(i).getAnswer4())) {
-					totalScore += score[i];
-					
-					if(i == 4 || i == 9)
-						saveScore(totalScore);
-					
-					i++;
-					setQuestions();
 
-				}else finish();
-				break;
+        if(answer.equals(list.get(nquest).getAnswer(rightAns-1))) {
+
+					totalScore += score[nquest];
+
+                    if(nquest == 4 || nquest == 9) {
+
+                        secureScore = totalScore;
+                        Toast.makeText(getApplicationContext(), "¡Zona Segura! Puntuación guardada", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if(nquest == 14) {
+
+                        saveScore(totalScore);
+                        Toast.makeText(getApplicationContext(), "Enhorabuena.¡Has Ganado!", Toast.LENGTH_SHORT).show();
+
+                        endGame();
+                    }
+
+					nquest++;
+
+                setQuestions();
 		}
+        else{
+            Toast.makeText(getApplicationContext(), "Fallaste! Vuelve a intentarlo ;)", Toast.LENGTH_SHORT).show();
+            if(secureScore > 0)
+                saveScore(secureScore);
+
+            endGame();
+        }
+
+
+
 	}
 	
 	public void saveScore(int totalScore) {
@@ -344,11 +323,50 @@ public class PlayActivity extends Activity {
 		
 		
 	}
-	public void finish() {
-		
+	public void endGame() {
+
+        deleteGameState();
 		startActivity(new Intent(PlayActivity.this, MainActivity.class));
 	
 	}
+    public void saveGameState() {
+
+        SharedPreferences preferences = getSharedPreferences("state", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putInt("numberQuestion", nquest);
+        editor.commit();
+    }
+
+    public void restoreGameState() {
+
+        SharedPreferences preferences = getSharedPreferences("state", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+
+        nquest = preferences.getInt("numberQuestion",0);
+
+        setQuestions();
+
+    }
+    public void deleteGameState() {
+
+        SharedPreferences preferences = getSharedPreferences("state", Context.MODE_PRIVATE);
+        preferences.edit().clear().commit();
+
+
+
+    }
+
+    public void onDestroy() {
+        super.onDestroy();
+        saveGameState();
+    }
+
+    public void onStart() {
+        super.onStart();
+        restoreGameState();
+    }
 }
 
 

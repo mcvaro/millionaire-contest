@@ -4,10 +4,8 @@ public class Question {
 
 	String number = null;
 	String text = null;
-	String answer1 = null;
-	String answer2 = null;
-	String answer3 = null;
-	String answer4 = null;	String right = null;
+    String[] answers = new String[4];
+	String right = null;
 	String audience = null;
 	String phone = null;
 	String fifty1 = null;
@@ -19,10 +17,10 @@ public class Question {
 	public Question(String number, String text, String answer1, String answer2, String answer3, String answer4, String right, String audience, String phone, String fifty1, String fifty2) {
 		this.number = number;
 		this.text = text;
-		this.answer1 = answer1;
-		this.answer2 = answer2;
-		this.answer3 = answer3;
-		this.answer4 = answer4;
+		this.answers[0] = answer1;
+		this.answers[1] = answer2;
+		this.answers[2] = answer3;
+		this.answers[3] = answer4;
 		this.right = right;
 		this.audience = audience;
 		this.phone = phone;
@@ -38,36 +36,8 @@ public class Question {
 		this.text = text;
 	}
 
-	public String getAnswer1() {
-		return answer1;
-	}
-
-	public void setAnswer1(String answer1) {
-		this.answer1 = answer1;
-	}
-
-	public String getAnswer2() {
-		return answer2;
-	}
-
-	public void setAnswer2(String answer2) {
-		this.answer2 = answer2;
-	}
-
-	public String getAnswer3() {
-		return answer3;
-	}
-
-	public void setAnswer3(String answer3) {
-		this.answer3 = answer3;
-	}
-
-	public String getAnswer4() {
-		return answer4;
-	}
-
-	public void setAnswer4(String answer4) {
-		this.answer4 = answer4;
+	public String getAnswer(int ans) {
+        return this.answers[ans];
 	}
 
 	public int getRight() {
