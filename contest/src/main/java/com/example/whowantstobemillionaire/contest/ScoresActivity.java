@@ -20,7 +20,7 @@ import android.widget.Toast;
 public class ScoresActivity extends MenuActivity {
 
 
-	@Override
+    private static DBScores score;
 
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -33,7 +33,7 @@ public class ScoresActivity extends MenuActivity {
 		tab.setCurrentTabByTag(getString(R.string.local));
 		
 		
-		DBScores score = new DBScores(this);
+		score = new DBScores(this);
 		List<Score> scores = score.getAllScores();
 		TableLayout tableLocal = (TableLayout) findViewById(R.id.ScoresLocal);
 		
@@ -61,7 +61,7 @@ public class ScoresActivity extends MenuActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete:
-                //score.delete()
+                score.delete(getContext());
                 return true;
         }
         return super.onOptionsItemSelected(item);

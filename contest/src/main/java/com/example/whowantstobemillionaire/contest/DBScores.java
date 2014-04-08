@@ -10,12 +10,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBScores extends SQLiteOpenHelper {
-	
-
-
 
 	
-	 public DBScores(Context contexto) {
+	public DBScores(Context contexto) {
 		 	super(contexto, "scores.db", null, 1)
 		 	;
 }
@@ -37,8 +34,8 @@ public class DBScores extends SQLiteOpenHelper {
 
 		
 	}
-    public void onDelete(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS Scores");
+    public void delete(Context contexto) {
+        contexto.deleteDatabase("Scores");
     }
 	
 	public void addScore(Score score) {
